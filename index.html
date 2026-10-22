@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Armor | Next-Gen Device Protection</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --surface-dark: #121216;
+            --accent-blue: #0071e3;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --border-color: #232329;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .cart-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .cart-btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-dark);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 120px auto 60px auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .catalog {
+            max-width: 1200px;
+            margin: 0 auto 100px auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 240px;
+            background-color: #1c1c22;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .add-to-cart {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .add-to-cart:hover {
+            opacity: 0.9;
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 1.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #34c759;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">APEX<span>ARMOR</span></div>
+            <button class="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>HEAVY-DUTY PROTECTION</h1>
+        <p>Premium, high-margin structural defense engineered for tablets and mobile workspaces.</p>
+    </section>
+
+    <main class="catalog">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="product-image">🛡️ Titan Pro Shell</div>
+            <div>
+                <div class="product-title">Titan Pro iPad Case</div>
+                <div class="product-desc">Military-grade impact armor equipped with multi-angle structural kickstand and reinforced drop bumpers.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">$49.99</div>
+                <button class="add-to-cart" onclick="addToCart('Titan Pro iPad Case', 49.99)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="product-image">🏗️ Stealth Matrix</div>
+            <div>
+                <div class="product-title">Stealth Matrix Tablet Case</div>
+                <div class="product-desc">Ultra-slim, hyper-durable carbon composite frame engineered for lightweight daily deployment.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">$39.99</div>
+                <button class="add-to-cart" onclick="addToCart('Stealth Matrix Tablet Case', 39.99)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Cart</h2>
+                <button class="close-btn" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsList">
+                <p style="color: var(--text-muted);">Your cart is empty.</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-weight:700; font-size:1.2rem;">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <!-- Payment processor integration point -->
+            <button class="checkout-btn" onclick="checkout()">Proceed to Stripe Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({name, price});
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const list = document.getElementById('cartItemsList');
+            
+            if(cart.length === 0) {
+                list.innerHTML = '<p style="color: var(--text-muted);">Your cart is empty.</p>';
+                document.getElementById('cartTotal').innerText = '$0.00';
+                return;
+            }
+
+            list.innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+                    <span>${item.name}</span>
+                    <strong>$${item.price.toFixed(2)}</strong>
+                </div>
+            `).join('');
+
