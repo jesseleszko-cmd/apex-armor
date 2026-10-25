@@ -9,108 +9,95 @@
             --bg-dark: #0a0a0c;
             --surface-dark: #121216;
             --accent-blue: #0071e3;
+            --accent-blue-hover: #005bb5;
             --text-main: #f5f5f7;
             --text-muted: #86868b;
             --border-color: #232329;
+            --success-green: #24b47e;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            overflow-x: hidden;
+            padding-bottom: 60px;
         }
 
         header {
-            background-color: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            width: 100%;
+            background-color: rgba(18, 18, 22, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px border var(--border-color);
+            padding: 20px;
+            position: sticky;
             top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.25rem;
+            font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        .logo span {
-            color: var(--accent-blue);
-        }
-
-        .cart-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .cart-btn:hover {
-            background-color: var(--text-main);
-            color: var(--bg-dark);
-        }
-
-        .hero {
-            max-width: 1200px;
-            margin: 120px auto 60px auto;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            margin-bottom: 1rem;
-            background: linear-gradient(180deg, #ffffff 0%, #86868b 100%);
+            background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
+        .cart-status {
+            background-color: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
         }
 
-        .catalog {
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .container {
             max-width: 1200px;
-            margin: 0 auto 100px auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
         }
 
         .product-card {
             background-color: var(--surface-dark);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -119,40 +106,42 @@
 
         .product-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-blue);
+            border-color: #33333d;
         }
 
         .product-image {
             width: 100%;
-            height: 240px;
-            background-color: #1c1c22;
+            height: 200px;
+            background-color: var(--bg-dark);
             border-radius: 8px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-weight: 500;
             border: 1px solid var(--border-color);
-            font-size: 1.1rem;
-            text-align: center;
-            padding: 1rem;
+        }
+
+        .product-image svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--text-muted);
         }
 
         .product-title {
-            font-size: 1.25rem;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
         }
 
         .product-desc {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            font-size: 14px;
             line-height: 1.4;
+            margin-bottom: 16px;
+            flex-grow: 1;
         }
 
-        .product-footer {
+        .product-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -160,79 +149,118 @@
         }
 
         .product-price {
-            font-size: 1.5rem;
+            font-size: 20px;
             font-weight: 700;
         }
 
-        .add-to-cart {
+        .add-to-cart-btn {
             background-color: var(--accent-blue);
             color: white;
             border: none;
-            padding: 0.6rem 1.2rem;
+            padding: 10px 18px;
             border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s ease;
+            transition: background-color 0.2s ease;
         }
 
-        .add-to-cart:hover {
-            opacity: 0.9;
+        .add-to-cart-btn:hover {
+            background-color: var(--accent-blue-hover);
         }
 
-        /* Cart Modal */
-        .modal {
-            display: none;
+        /* Inline Slide-out Cart Panel */
+        .cart-panel {
             position: fixed;
+            right: -400px;
             top: 0;
-            left: 0;
             width: 100%;
+            max-width: 400px;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
             background-color: var(--surface-dark);
-            border: 1px solid var(--border-color);
-            width: 90%;
-            max-width: 500px;
-            border-radius: 16px;
-            padding: 2rem;
+            border-left: 1px solid var(--border-color);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .modal-header {
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 30px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
+            padding-bottom: 15px;
         }
 
-        .close-btn {
+        .close-cart {
             background: none;
             border: none;
-            color: var(--text-muted);
-            font-size: 1.5rem;
+            color: var(--text-main);
+            font-size: 24px;
             cursor: pointer;
         }
 
         .cart-items {
-            margin-bottom: 1.5rem;
-            max-height: 200px;
+            flex-grow: 1;
             overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-info h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ff453a;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .cart-total-box {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
         }
 
         .checkout-btn {
             width: 100%;
-            background-color: #34c759;
+            background-color: var(--success-green);
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 14px;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -241,81 +269,53 @@
 <body>
 
     <header>
-        <div class="nav-container">
-            <div class="logo">APEX<span>ARMOR</span></div>
-            <button class="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
-        </div>
+        <div class="logo">APEX ARMOR</div>
+        <div class="cart-status" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</div>
     </header>
 
     <section class="hero">
-        <h1>HEAVY-DUTY PROTECTION</h1>
-        <p>Premium structural defense engineered for tablets and mobile workspaces.</p>
+        <h1>Next-Gen Device Protection</h1>
+        <p>Heavy-duty, military-grade defense blueprints engineered to safeguard your everyday hardware from unexpected impacts.</p>
     </section>
 
-    <main class="catalog">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <div class="product-image">🛡️ Titan Pro Shell</div>
-            <div>
-                <div class="product-title">Titan Pro iPad Case</div>
-                <div class="product-desc">Military-grade impact armor equipped with multi-angle structural kickstand and reinforced drop bumpers.</div>
+    <main class="container">
+        <div class="products-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                </div>
+                <div>
+                    <div class="product-title">Titan Guard Phone Case</div>
+                    <div class="product-desc">Shock-absorbing outer matrix with dual-layer ballistic corner defense shields. Built for extreme drops.</div>
+                </div>
+                <div class="product-bottom">
+                    <div class="product-price">$29.99</div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Titan Guard Phone Case', 29.99)">Add to Cart</button>
+                </div>
             </div>
-            <div class="product-footer">
-                <div class="product-price">$49.99</div>
-                <button class="add-to-cart" onclick="addToCart('Titan Pro iPad Case', 49.99)">Add to Cart</button>
-            </div>
-        </div>
 
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="product-image">🏗️ Stealth Matrix</div>
-            <div>
-                <div class="product-title">Stealth Matrix Tablet Case</div>
-                <div class="product-desc">Ultra-slim, hyper-durable carbon composite frame engineered for lightweight daily deployment.</div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 5h16v11H4V5z"/></svg>
+                </div>
+                <div>
+                    <div class="product-title">ArmorClad Laptop Vault</div>
+                    <div class="product-desc">Water-resistant EVA hardshell carrying armor featuring precise inner high-density security foam lining.</div>
+                </div>
+                <div class="product-bottom">
+                    <div class="product-price">$49.99</div>
+                    <button class="add-to-cart-btn" onclick="addToCart('ArmorClad Laptop Vault', 49.99)">Add to Cart</button>
+                </div>
             </div>
-            <div class="product-footer">
-                <div class="product-price">$39.99</div>
-                <button class="add-to-cart" onclick="addToCart('Stealth Matrix Tablet Case', 39.99)">Add to Cart</button>
-            </div>
-        </div>
 
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-image">📱 Ironclad Mobile Shield</div>
-            <div>
-                <div class="product-title">Ironclad iPhone Defense Case</div>
-                <div class="product-desc">Dual-layer polycarbonate armor featuring a scratch-resistant backplate and integrated magnetic array.</div>
-            </div>
-            <div class="product-footer">
-                <div class="product-price">$29.99</div>
-                <button class="add-to-cart" onclick="addToCart('Ironclad iPhone Defense Case', 29.99)">Add to Cart</button>
-            </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-image">💼 Exo-Sleeve Tactical</div>
-            <div>
-                <div class="product-title">Exo-Sleeve Laptop Armor</div>
-                <div class="product-desc">Water-resistant ballistic nylon outer layer with dense internal shock-absorbing EVA foam ridges.</div>
-            </div>
-            <div class="product-footer">
-                <div class="product-price">$59.99</div>
-                <button class="add-to-cart" onclick="addToCart('Exo-Sleeve Laptop Armor', 59.99)">Add to Cart</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Shopping Cart Modal -->
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Your Cart</h2>
-                <button class="close-btn" onclick="toggleCart()">&times;</button>
-            </div>
-            <div class="cart-items" id="cartItemsList">
-                <p style="color: var(--text-muted);">Your cart is empty.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-weight:700; font-size:1.2rem;">
-                <span>Total:</span>
-                <span id="cartTotal">$0.00</span>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L11 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                <div>
+                    <div class="product-title">Stealth Shield AirTag Case</div>
+                    <div class="product-desc">Rugged carbon-fiber texture shell complete with a heavy-duty carabiner ring for unbreakable tracking security.</div>
