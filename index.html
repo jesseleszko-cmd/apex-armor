@@ -27,6 +27,7 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             padding-bottom: 60px;
+            overflow-x: hidden;
         }
 
         header {
@@ -58,6 +59,7 @@
             border-radius: 20px;
             font-size: 14px;
             cursor: pointer;
+            z-index: 110;
         }
 
         .hero {
@@ -120,7 +122,6 @@
             justify-content: center;
             border: 1px solid var(--border-color);
             overflow: hidden;
-            position: relative;
         }
 
         .product-image svg {
@@ -171,9 +172,10 @@
             background-color: var(--accent-blue-hover);
         }
 
+        /* Fixed Cart Panel Styles - Zero click-interference when hidden */
         .cart-panel {
             position: fixed;
-            right: 0;
+            right: -440px; 
             top: 0;
             width: 100%;
             max-width: 400px;
@@ -183,12 +185,13 @@
             box-shadow: -10px 0 30px rgba(0,0,0,0.5);
             z-index: 1000;
             padding: 30px;
-            display: none; /* Fixed structural layer visibility bug */
+            display: flex;
             flex-direction: column;
+            transition: right 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .cart-panel.open {
-            display: flex;
+            right: 0; 
         }
 
         .cart-header {
@@ -275,20 +278,20 @@
 
     <section class="hero">
         <h1>Next-Gen Device Protection & Customization</h1>
-        <p>Heavy-duty, military-grade defense blueprints and professional-grade machinery engineered to safeguard and customize your everyday hardware.</p>
+        <p>Heavy-duty, military-grade defense blueprints and professional machinery engineered to safeguard your gear.</p>
     </section>
 
     <main class="container">
         <div class="products-grid">
             
-            <!-- Featured Product: A3 UV Printer Kit -->
+            <!-- Product 1: A3 UV Flatbed Printer Kit -->
             <div class="product-card">
                 <div class="product-image">
                     <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
                 </div>
                 <div>
                     <div class="product-title">A3 UV Flatbed Printer Kit (L805)</div>
-                    <div class="product-desc">Industrial-tier DTF multi-surface customization machinery. Perfect for printing durable, scratch-resistant armoring designs onto phone cases, laptops, and custom gear. Built-in US Warehouse shipping.</div>
+                    <div class="product-desc">Industrial-tier UV DTF multi-surface print machinery. Perfect for adding high-durability, custom scratch-resistant protection graphics onto heavy-duty phone cases and custom tech assemblies. Fast delivery options.</div>
                 </div>
                 <div class="product-bottom">
                     <div class="product-price">$249.99</div>
@@ -296,7 +299,7 @@
                 </div>
             </div>
 
-            <!-- Product 2 -->
+            <!-- Product 2: Titan Guard Phone Case -->
             <div class="product-card">
                 <div class="product-image">
                     <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
@@ -311,10 +314,9 @@
                 </div>
             </div>
 
-            <!-- Product 3 -->
+            <!-- Product 3: ArmorClad Laptop Vault -->
             <div class="product-card">
                 <div class="product-image">
                     <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 5h16v11H4V5z"/></svg>
                 </div>
                 <div>
-                    <div class="product-title">ArmorClad Laptop Vault</div>
